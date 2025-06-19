@@ -5,8 +5,8 @@ from fpdf import FPDF
 import os
 import uuid
 import en_core_web_sm
-nlp = en_core_web_sm.load()
 
+nlp = en_core_web_sm.load()
 
 def extract_resume_text(file):
     reader = PdfReader(file)
@@ -14,9 +14,6 @@ def extract_resume_text(file):
     for page in reader.pages:
         text += page.extract_text()
     return text
-
-def extract_text_from_pdf(file):
-    return extract_resume_text(file)
 
 def get_local_summary(text):
     doc = nlp(text)
@@ -57,7 +54,6 @@ def export_ranking_pdf(ranking_list):
     return file_path
 
 def get_openai_roles(resume_text):
-    # Using fixed offline roles
     keywords = {
         "Python": "Python Developer",
         "SQL": "Data Analyst",
