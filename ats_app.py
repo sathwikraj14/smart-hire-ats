@@ -9,10 +9,11 @@ from utils import (
     export_ranking_pdf,
     get_openai_roles
 )
-import os
 
+# Page config
 st.set_page_config(page_title="SmartHire ATS | Resume Analyzer", layout="wide")
 
+# App title
 st.markdown("## 🧠 **SmartHire ATS – Resume Analyzer**")
 st.markdown("_A professional resume analysis tool for recruiters and job seekers._")
 st.write("---")
@@ -78,5 +79,11 @@ role_file = st.file_uploader("Upload Resume for Role Suggestions", type=["pdf"])
 if role_file:
     role_text = extract_resume_text(role_file)
     roles = get_openai_roles(role_text)
-    st.success("Suggested Job Roles:")
-    st.markdown(f"- {roles.replace(', ', '\n- ')}")
+
+    if roles:
+        st.success("Suggested Job Roles:")
+        formatted_roles = "- " + roles.replace(", ", "\n- ")
+        st.markdown(formatted_roles)
+    else:
+        st.warning("⚠️ No roles could be suggested from this resume.")
+
