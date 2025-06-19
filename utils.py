@@ -4,9 +4,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 from fpdf import FPDF
 import os
 import uuid
-import spacy
+import en_core_web_sm
+nlp = en_core_web_sm.load()
 
-nlp = spacy.load("en_core_web_sm")
 
 def extract_resume_text(file):
     reader = PdfReader(file)
