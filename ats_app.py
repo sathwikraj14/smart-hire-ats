@@ -8,6 +8,7 @@ from utils import (
     export_ranking_pdf,
     get_openai_roles
 )
+import os
 
 st.set_page_config(page_title="SmartHire ATS | Resume Analyzer", layout="wide")
 
